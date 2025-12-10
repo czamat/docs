@@ -1,0 +1,104 @@
+---
+title: "Set Up With Postman"
+description: "This document explains how to configure Postman to integrate with tppq.ai."
+---
+
+This document provides a concise guide for configuring Postman to integrate with the [ppq.ai](http://ppq.ai) `chat/completions` endpoint. It includes setup instructions, example payloads, and troubleshooting guidance for common errors.
+
+## What Is Postman?
+
+Postman is a desktop and web-based tool used for testing, exploring, and automating API requests. It lets you easily send HTTP requests, view responses, manage authentication, organize collections, and debug APIs without writing code. It’s widely used by developers for building, documenting, and validating APIs.
+
+## Introduction
+
+This guide walks users through setting up a request in Postman to interact with the [ppq.ai](http://ppq.ai) API. It covers authentication, request formatting, and troubleshooting typical errors such as 401 Unauthorized and 400 Bad Request.
+
+## Requirements
+
+- A valid [ppq.ai](http://ppq.ai) API key
+- Postman installed
+- Endpoint: `https://api.ppq.ai/chat/completions`
+
+## Configuring Postman
+
+### Authentication Setup
+
+1. Open a new POST request in Postman.
+2. Enter the URL: `https://api.ppq.ai/chat/completions`
+3. Go to the **Auth** tab.
+4. Set **Auth Type** to **Bearer Token**.
+5. Paste your API key into the **Token** field.
+6. Ensure you do _not_ type `Bearer` manually; Postman adds it automatically.
+
+![Screenshot 2025-12-10 at 2.16.44 PM.png](/images/Screenshot2025-12-10at2.16.44PM.png)
+
+### Request Body
+
+1. Open the **Body** tab.
+2. Select **raw**.
+3. Select **JSON** from the dropdown.
+4. Enter a valid JSON payload such as:
+
+```json
+{
+  "model": "gpt-5.1",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello!"
+    }
+  ]
+}
+```
+
+## Common Errors and How to Fix Them
+
+### 401 Unauthorized
+
+**Message:** `Missing or invalid Authorization header`
+
+**Causes:**
+
+- Auth type not set to Bearer Token
+- Token field contains incorrect formatting
+- Authorization appended in the URL instead of the header
+
+**Fix:**
+
+- Use **Auth Type: Bearer Token**
+- Paste only the API key (no prefix)
+- Verify Headers show exactly: `Authorization: Bearer <your key>`
+
+### 400 Bad Request
+
+**Message:** `Invalid JSON in request body`
+
+**Causes:**
+
+- JSON syntax errors
+- Non‑standard quotes
+- Missing commas or braces
+- Incorrect Body type
+
+**Fix:**
+
+- Ensure Body is set to **raw → JSON**
+- Validate the JSON structure
+- Use straight quotes `"` only
+
+## Successful Response
+
+Once authentication and JSON formatting are correct, the endpoint returns: `200 OK`
+
+This indicates that the request was processed successfully and your Postman integration with [ppq.ai](http://ppq.ai) is functioning properly.
+
+## Next Steps
+
+With a valid setup, users can:
+
+- Modify model parameters
+- Add advanced settings (temperature, max_tokens, etc.)
+- Implement streaming responses
+- Build automated test suites in Postman
+
+If additional configuration or help is needed, please contact us through the customer communication chatbot in the bottom right or in our telegram channel!
