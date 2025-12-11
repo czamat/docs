@@ -1,0 +1,100 @@
+---
+title: "Connecting Insomnia to ppq.ai"
+description: "Insomnia is an API client similar to Postman. You can use it to send authenticated requests to ppq.ai's chat/completions endpoint and test models interactively.on of your new file."
+---
+
+This document describes the procedure for configuring Insomnia to interact with the [ppq.ai](http://ppq.ai) API for sending chat completion requests.
+
+## What Is Insomnia?
+
+Insomnia is an HTTP client used to construct, send, and debug API requests. The following instructions outline the required configuration steps to authenticate with [ppq.ai](http://ppq.ai) and issue a `POST` request to the `chat/completions` endpoint.
+
+## Requirements
+
+- Installed Insomnia application
+- Valid [ppq.ai](http://ppq.ai) API key
+- Network access to the [ppq.ai](http://ppq.ai) service endpoint
+
+## Step By Step Set Up
+
+### 1. Create a New Request
+
+- Open Insomnia.
+- Choose or create a workspace.
+- From your workspace, Select **Create → Request Collection**.
+- Assign a descriptive name (for example, ppq Chat Completion).
+- Select **New Request.**
+- Select **POST** as the method.
+
+### 2. Configure the Endpoint
+
+Set the request URL to:  `https://api.ppq.ai/chat/completions`
+
+### 3. Configure Authentication
+
+- Open the **Auth** tab.
+- Select **Bearer Token**.
+- Paste the [ppq.ai](http://ppq.ai) API key into the **Token** field from [**<u>ppq.ai/api-docs</u>**](https://ppq.ai/api-docs)**<u>.</u>**
+- Do not manually prepend "Bearer"; Insomnia handles the prefix automatically.
+
+### 4. Define the Request Body
+
+- Open the **Body** tab.
+- Select **JSON**.
+- Insert the following payload:
+
+```json
+{
+  "model": "gpt-5.1",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello!"
+    }
+  ]
+}
+```
+
+### 5. Execute the Request
+
+- Select **Send**.
+- A successful operation returns HTTP status `200` and a JSON response containing the model output.
+
+## Common Issues and Resolutions
+
+### Missing or Invalid Token
+
+- Verify **Bearer Token** authentication is selected.
+- Ensure the [ppq.ai](http://ppq.ai) API key is valid and not expired.
+
+### Malformed JSON
+
+- Confirm that the Body type is set to **JSON**.
+- Remove trailing commas and verify that quotation marks are standard ASCII characters.
+
+### Incorrect Endpoint
+
+- Ensure the request URL is exactly:\
+  `https://api.ppq.ai/chat/completions`
+- Make sure **Bearer Token** authentication is selected
+- Ensure your API key is valid
+
+#### Invalid JSON
+
+- Ensure Body type is **JSON**
+- Avoid trailing commas or smart quotes
+
+#### Wrong endpoint
+
+- Confirm the URL is exactly: `https://api.ppq.ai/chat/completions`
+
+## Benefits of Using Insomnia With PayPerQ
+
+- **Seamless API testing**: Insomnia makes it easy to build, send, and debug requests to [PPQ.ai](http://PPQ.ai)’s endpoints with a clear interface and fast iteration.
+- **Environment & secret management**: You can store [PPQ.ai](http://PPQ.ai) API keys, variables, and different environments (dev/test/prod) without exposing sensitive data.
+- **Workflow automation**: Collections, reusable requests, and scripting let you quickly reproduce [PPQ.ai](http://PPQ.ai) workflows and test multiple scenarios.
+- **Better collaboration**: Exportable workspaces and clear request structures make it easy to share [PPQ.ai](http://PPQ.ai) setups with teammates.
+
+## Problems?
+
+Please contact us through the customer communication chatbot in the bottom right or in our telegram channel!
